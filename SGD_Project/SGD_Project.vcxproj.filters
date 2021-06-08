@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki źródłowe\Obiekty">
+      <UniqueIdentifier>{d799b408-beaf-452f-b71a-9d5bd5d781e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Grafika">
+      <UniqueIdentifier>{6647dd1a-6423-488b-83f3-5dccaafe854a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Physics">
+      <UniqueIdentifier>{cea8fd76-7e58-49a6-8dd8-26a51378cdf9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -21,10 +30,28 @@
     <ClCompile Include="main.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Pliki źródłowe\Grafika</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
       <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="IObject.h">
+      <Filter>Pliki źródłowe\Obiekty</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Pliki źródłowe\Obiekty</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Pliki źródłowe\Grafika</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Pliki źródłowe\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Pliki źródłowe\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

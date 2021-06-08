@@ -1,5 +1,9 @@
 #include "Engine.h"
+#include "TextureManager.h"
 #include <iostream>
+#include <SDL_image.h>
+//#include "Vector2D.h" test vektor
+#include "Transform.h"
 
 Engine* Engine::s_Instance = nullptr;
 
@@ -25,24 +29,33 @@ bool Engine::Init() {
 		return false;
 	}
 
+	TextureManager::GetInstance()->Load("Hodl","Assets/Hodl.jpg");
+
+	// test wektor
+	/*
+	Vector2D v1(1,1), v2(1,1), v3;
+	v3 = v1 + v2;
+	v3.Log("V3:");
+	*/
+	Transform tf(1,2);
+	tf.Log();
+
 	return m_IsRunning = true;
 }
 
-void Engine::Clean() {
-}
-
 void Engine::Update() {
-	SDL_Log("Its working in the loop...\n");
-}
-
-void Engine::Quit() {
-	m_IsRunning = false;
+	//SDL_Log("Its working in the loop...\n");
 }
 
 void Engine::Render() {
-	SDL_SetRenderDrawColor(m_Renderer, 124, 213, 254, 255);
+	SDL_SetRenderDrawColor(m_Renderer, 204, 255, 153, 255);
+	SDL_RenderClear(m_Renderer);
+
+	TextureManager::GetInstance()->Draw("Hodl", 0, 0, 960, 640);
 	SDL_RenderPresent(m_Renderer);
+
 }
+
 
 void Engine::Events() {
 	SDL_Event event;
@@ -53,3 +66,19 @@ void Engine::Events() {
 		break;
 	}
 }
+
+bool Engine::Clean() {
+	TextureManager::GetInstance()->Clean();
+	SDL_DestroyRenderer(m_Renderer);
+	SDL_DestroyWindow(m_Window);
+	IMG_Quit();
+	SDL_Quit();
+	return true;
+}
+
+
+void Engine::Quit() {
+	m_IsRunning = false;
+}
+
+

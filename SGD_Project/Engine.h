@@ -16,7 +16,7 @@ class Engine {
 		}
 
 		bool Init();
-		void Clean();
+		bool Clean();
 		void Quit();
 
 		void Update();
