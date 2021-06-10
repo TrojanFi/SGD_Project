@@ -19,8 +19,11 @@
     <Filter Include="Pliki źródłowe\Grafika">
       <UniqueIdentifier>{6647dd1a-6423-488b-83f3-5dccaafe854a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki źródłowe\Physics">
+    <Filter Include="Pliki źródłowe\Fizyka">
       <UniqueIdentifier>{cea8fd76-7e58-49a6-8dd8-26a51378cdf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Postacie">
+      <UniqueIdentifier>{7fd5a785-f14f-460f-a88c-04daa0e03260}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -32,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="TextureManager.cpp">
       <Filter>Pliki źródłowe\Grafika</Filter>
+    </ClCompile>
+    <ClCompile Include="BlobOne.cpp">
+      <Filter>Pliki źródłowe\Postacie</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -48,10 +54,16 @@
       <Filter>Pliki źródłowe\Grafika</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.h">
-      <Filter>Pliki źródłowe\Physics</Filter>
+      <Filter>Pliki źródłowe\Fizyka</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Pliki źródłowe\Physics</Filter>
+      <Filter>Pliki źródłowe\Fizyka</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Pliki źródłowe\Postacie</Filter>
+    </ClInclude>
+    <ClInclude Include="BlobOne.h">
+      <Filter>Pliki źródłowe\Postacie</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

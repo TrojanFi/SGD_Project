@@ -1,2 +1,17 @@
-﻿  Engine.cpp
-  SGD_Project.vcxproj -> C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\x64\Debug\SGD_Project.exe
+﻿  BlobOne.cpp
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\GameObject.h(11,13): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\GameObject.h(12,13): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\Character.h(10,29): error C2664: „GameObject::GameObject(GameObject &&)”: nie można dokonać konwersji argumentu 1 z „Properties” do „Properties *”
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\Character.h(10,42): message : Nie jest dostępny żaden operator konwersji zdefiniowany przez użytkownika, który mógłby wykonać tę konwersję lub operator nie może zostać wywołany
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\GameObject.h(28,5): message : zobacz deklarację „GameObject::GameObject”
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(4,19): error C2512: "Character": niedostępny odpowiedni konstruktor domyślny
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\Character.h(7,7): message : zobacz deklarację „Character”
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(9,36): error C2512: "Character": niedostępny odpowiedni konstruktor domyślny
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\Character.h(7,7): message : zobacz deklarację „Character”
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(14,66): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(14,51): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(14,18): error C2352: „TextureManager::DrawFrame”: Niedozwolone wywołanie niestatycznej funkcji składowej
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\TextureManager.h(20): message : zobacz deklarację „TextureManager::DrawFrame”
+  Engine.cpp
+  TextureManager.cpp
+  Generowanie kodu...
