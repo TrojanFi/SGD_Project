@@ -4,8 +4,9 @@
 #include <SDL_image.h>
 //#include "Vector2D.h" test vektor
 #include "Transform.h"
-
+#include "BlobOne.h"
 Engine* Engine::s_Instance = nullptr;
+BlobOne* Blob_One = nullptr;
 
 bool Engine::Init() {
 
@@ -29,8 +30,8 @@ bool Engine::Init() {
 		return false;
 	}
 
-	TextureManager::GetInstance()->Load("Hodl","Assets/Hodl.jpg");
-
+	TextureManager::GetInstance()->Load("BlobOneIdle","Assets/BlobOne.png");
+	Blob_One = new BlobOne(new Properties("BlobOneIdle", 100, 100, 64, 64));
 	// test wektor
 	/*
 	Vector2D v1(1,1), v2(1,1), v3;
@@ -46,13 +47,15 @@ bool Engine::Init() {
 
 void Engine::Update() {
 	//SDL_Log("Its working in the loop...\n");
+	Blob_One->Update(0);
 }
 
 void Engine::Render() {
 	SDL_SetRenderDrawColor(m_Renderer, 204, 255, 153, 255);
 	SDL_RenderClear(m_Renderer);
 
-	TextureManager::GetInstance()->Draw("Hodl", 0, 0, 960, 640);
+	//TextureManager::GetInstance()->Draw("BlobOneIdle", 0, 0, 960, 640);
+	Blob_One->Draw();
 	SDL_RenderPresent(m_Renderer);
 
 }

@@ -6,9 +6,6 @@
 
 class Character: public GameObject{
 	public:
-		////
-		Character() {}
-		////
 		Character(Properties* props) : GameObject(props) {}
 	
 		virtual void Draw() = 0;

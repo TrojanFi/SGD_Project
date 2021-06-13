@@ -3,13 +3,11 @@
 
 #include "Character.h"
 
+
 class BlobOne: public Character {
 
 public:
-	////
-	BlobOne();
-	////
-	BlobOne(Properties props);
+	BlobOne(Properties* props);
 
 	virtual void Draw();
 	virtual void Clean();
