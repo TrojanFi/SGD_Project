@@ -30,7 +30,7 @@ bool Engine::Init() {
 		return false;
 	}
 
-	TextureManager::GetInstance()->Load("BlobOneIdle","Assets/BlobOne.png");
+	TextureManager::GetInstance()->Load("BlobOneIdle","Assets/BlobIdle.png");
 	Blob_One = new BlobOne(new Properties("BlobOneIdle", 100, 100, 64, 64));
 	// test wektor
 	/*
