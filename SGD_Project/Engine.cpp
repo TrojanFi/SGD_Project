@@ -5,6 +5,7 @@
 //#include "Vector2D.h" test vektor
 #include "Transform.h"
 #include "BlobOne.h"
+#include "InputHandler.h"
 Engine* Engine::s_Instance = nullptr;
 BlobOne* Blob_One = nullptr;
 
@@ -47,6 +48,9 @@ bool Engine::Init() {
 
 void Engine::Update() {
 	//SDL_Log("Its working in the loop...\n");
+	if (InputHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_A)) {
+		SDL_Log("Key A pushed");
+	}
 	Blob_One->Update(0);
 }
 
@@ -62,13 +66,7 @@ void Engine::Render() {
 
 
 void Engine::Events() {
-	SDL_Event event;
-	SDL_PollEvent(&event);
-	switch (event.type) {
-	case SDL_QUIT:
-		Quit();
-		break;
-	}
+	InputHandler::GetInstance()->listen();
 }
 
 bool Engine::Clean() {
