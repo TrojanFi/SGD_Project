@@ -77,6 +77,9 @@
     <ClInclude Include="Animation.h">
       <Filter>Pliki źródłowe\Animacje</Filter>
     </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Pliki źródłowe\Fizyka</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SGD_Project.rc">

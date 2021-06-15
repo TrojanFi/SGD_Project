@@ -3,7 +3,7 @@
 
 #include "Character.h"
 #include "Animation.h"
-
+#include "RigidBody.h"
 
 class BlobOne: public Character {
 
@@ -18,6 +18,7 @@ private:
 	//int m_Row, m_Frame, m_FrameCount;
 	//int m_AnimationSpeed;
 	Animation* m_Animation;
+	RigidBody* m_RigidBody;
 };
 
 #endif // !BLOBONE_H
