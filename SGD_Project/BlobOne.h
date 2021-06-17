@@ -15,8 +15,6 @@ public:
 	virtual void Update(float dt);
 
 private:
-	//int m_Row, m_Frame, m_FrameCount;
-	//int m_AnimationSpeed;
 	Animation* m_Animation;
 	RigidBody* m_RigidBody;
 };

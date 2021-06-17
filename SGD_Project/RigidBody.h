@@ -29,21 +29,37 @@ public:
 	inline void UnSetFriction() { m_Friction = Vector2D(0, 0); }
 
 	inline float GetMass() { return m_Mass; }
+	inline int GetLevel() { return m_Level; }
 	inline Vector2D Position() { return m_Position; }
 	inline Vector2D Velocity() { return m_Velocity; }
 	inline Vector2D Acceleration() { return m_Acceleration; }
 
 
 
+	inline void SetPositionDown() { 
+		m_Position.Log("Dane = "); 
+		m_Level -= 1;
+		m_Position.Y += 150 ; 
+	}
+
+	inline void SetPositionUp() {
+		m_Position.Log("Dane = ");
+		m_Level += 1;
+			m_Position.Y -= 150;
+	}
+
+
 	void Update(float dt) {
 		m_Acceleration.X = (m_Force.X + m_Friction.X) / m_Mass;
-		m_Acceleration.Y = m_Gravity + m_Force.Y / m_Mass;
+	//	m_Acceleration.Y = m_Gravity + m_Force.Y / m_Mass;
 		m_Velocity = m_Acceleration * dt;
 		m_Position = m_Velocity * dt;
 	}
 
 
 private:
+	int m_Level = 3;
+
 	float m_Mass;
 	float m_Gravity;
 

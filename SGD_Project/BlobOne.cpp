@@ -3,6 +3,11 @@
 #include <SDL.h>
 #include "InputHandler.h"
 
+#include <chrono>
+#include <thread>
+
+
+
 BlobOne::BlobOne(Properties* props):Character(props){
 	m_RigidBody = new RigidBody();
 	m_Animation = new Animation();
@@ -14,8 +19,12 @@ void BlobOne::Draw() {
 }
 
 
+
+
 void BlobOne::Update(float dt) {
 	//m_Frame = (SDL_GetTicks() / m_AnimationSpeed) % m_FrameCount;
+
+	m_RigidBody->Update(0.8);
 
 	m_Animation->SetProps("BlobOneIdle", 0, 3, 100, SDL_FLIP_NONE);
 	m_RigidBody->UnSetForce();
@@ -30,10 +39,23 @@ void BlobOne::Update(float dt) {
 		m_Animation->SetProps("BlobRun", 0, 6, 100, SDL_FLIP_HORIZONTAL);
 	}
 
-	m_RigidBody->Update(0.8);
+	if (InputHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_S) && m_RigidBody->GetLevel() <= 3 && m_RigidBody->GetLevel() > 0) {
+		m_RigidBody->SetPositionDown();
+		std::this_thread::sleep_for(std::chrono::milliseconds(200));
+		std::cout << "Level =" << m_RigidBody->GetLevel() << std::endl;
+
+	}
+	if (InputHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_W) && m_RigidBody->Position().Y >= 0 && m_RigidBody->GetLevel() < 3) {
+		m_RigidBody->SetPositionUp();
+		std::this_thread::sleep_for(std::chrono::milliseconds(200));
+		std::cout << "Level =" << m_RigidBody->GetLevel() << std::endl;
+
+	}
+
+
 	//m_Transform->X += m_RigidBody->Position().X;
 	m_Transform->TranslateX(m_RigidBody->Position().X);
-	//m_Transform->TranslateY(m_RigidBody->Position().Y);
+	m_Transform->TranslateY(m_RigidBody->Position().Y);
 
 	m_Animation->Update();
 

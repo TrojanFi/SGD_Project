@@ -15,7 +15,6 @@ public:
         Height = height;
         TextureID = textureID;
     }
-
 public:
     std::string TextureID;
     int Width, Height;
