@@ -32,6 +32,8 @@ bool Engine::Init() {
 	}
 
 	TextureManager::GetInstance()->Load("BlobOneIdle","Assets/BlobIdle.png");
+	TextureManager::GetInstance()->Load("BlobRun", "Assets/BlobRun.png");
+
 	Blob_One = new BlobOne(new Properties("BlobOneIdle", 100, 100, 64, 64));
 	// test wektor
 	/*
@@ -48,9 +50,6 @@ bool Engine::Init() {
 
 void Engine::Update() {
 	//SDL_Log("Its working in the loop...\n");
-	if (InputHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_A)) {
-		SDL_Log("Key A pushed");
-	}
 	Blob_One->Update(0);
 }
 

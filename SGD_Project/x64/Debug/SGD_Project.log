@@ -1,6 +1,9 @@
-﻿  Engine.cpp
+﻿  BlobOne.cpp
 C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\GameObject.h(11,13): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
 C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\GameObject.h(12,13): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-  InputHandler.cpp
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(33,25): warning C4305: "argument": obcięcie z "double" do "float"
+  Engine.cpp
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\GameObject.h(11,13): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\GameObject.h(12,13): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
   Generowanie kodu...
   SGD_Project.vcxproj -> C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\x64\Debug\SGD_Project.exe
