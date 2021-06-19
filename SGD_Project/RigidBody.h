@@ -4,7 +4,7 @@
 #include "Vector2D.h"
 
 #define UNI_MASS 1.0f
-#define GRAVITY 9.8f
+#define GRAVITY 0.0 //9.8f
 
 #define FORWARD 1
 #define BACKWARD -1
@@ -35,23 +35,24 @@ public:
 	inline Vector2D Acceleration() { return m_Acceleration; }
 
 
+	inline void SetLevel0() {
+		m_Level = 3;
+	}
 
 	inline void SetPositionDown() { 
 		m_Position.Log("Dane = "); 
 		m_Level -= 1;
-		m_Position.Y += 150 ; 
 	}
 
 	inline void SetPositionUp() {
 		m_Position.Log("Dane = ");
 		m_Level += 1;
-			m_Position.Y -= 150;
 	}
 
 
 	void Update(float dt) {
 		m_Acceleration.X = (m_Force.X + m_Friction.X) / m_Mass;
-	//	m_Acceleration.Y = m_Gravity + m_Force.Y / m_Mass;
+		m_Acceleration.Y = m_Gravity + m_Force.Y / m_Mass;
 		m_Velocity = m_Acceleration * dt;
 		m_Position = m_Velocity * dt;
 	}

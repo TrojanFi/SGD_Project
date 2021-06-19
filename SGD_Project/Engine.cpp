@@ -5,9 +5,14 @@
 #include "Transform.h"
 #include "BlobOne.h"
 #include "InputHandler.h"
+#include "Bullet.h"
+#include "Collision.h"
 Engine* Engine::s_Instance = nullptr;
 BlobOne* Blob_One = nullptr;
-
+Bullet* bullet= nullptr;
+Bullet* bullet2 = nullptr;
+Bullet* bullet3 = nullptr;
+Collision* collision = nullptr;
 bool Engine::Init() {
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -33,8 +38,20 @@ bool Engine::Init() {
 	TextureManager::GetInstance()->Load("Bg", "Assets/Bg.png");
 	TextureManager::GetInstance()->Load("BlobOneIdle","Assets/BlobIdle.png");
 	TextureManager::GetInstance()->Load("BlobRun", "Assets/BlobRun.png");
+	TextureManager::GetInstance()->Load("Bullet", "Assets/Bullet2.png");
 
 	Blob_One = new BlobOne(new Properties("BlobOneIdle", 100, 100, 64, 64));
+
+	bullet = new Bullet(new Properties("Bullet", 400, 400, 16, 16));
+	bullet->Alive();
+	bullet2 = new Bullet(new Properties("Bullet", 150, 400, 16, 16));
+	
+	
+
+	
+	
+	
+
 	Transform tf(1,2);
 	tf.Log();
 
@@ -44,6 +61,20 @@ bool Engine::Init() {
 void Engine::Update() {
 	//SDL_Log("Its working in the loop...\n");
 	Blob_One->Update(0);
+	bullet->Update(0);
+	bullet2->Update(0);
+	
+	if (collision->CheckCollision(Blob_One->rect, bullet->rect)) { 
+		Blob_One->StartPosition(); 
+		bullet->StartPosition();
+		bullet2->StartPosition();
+	}
+	if (collision->CheckCollision(Blob_One->rect, bullet2->rect)) {
+		Blob_One->StartPosition();
+		bullet->StartPosition();
+		bullet2->StartPosition();
+	}
+	
 }
 
 void Engine::Render() {
@@ -52,6 +83,11 @@ void Engine::Render() {
 
 	TextureManager::GetInstance()->Draw("Bg", 0, 0, 960, 640);
 	Blob_One->Draw();
+	bullet->Draw();
+	bullet2->Draw();
+	Blob_One->RectView();
+	bullet->RectView();
+	bullet2->RectView();
 	SDL_RenderPresent(m_Renderer);
 
 }
@@ -59,6 +95,7 @@ void Engine::Render() {
 
 void Engine::Events() {
 	InputHandler::GetInstance()->listen();
+
 }
 
 bool Engine::Clean() {
