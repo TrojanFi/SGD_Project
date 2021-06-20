@@ -21,6 +21,7 @@ BlobOne::BlobOne(Properties* props):Character(props){
 }
 
 void BlobOne::StartPosition() {
+	m_lifePoints += -1;
 	rect.x = 100;
 	rect.y = 100;
 	rect.w = 64;
@@ -39,6 +40,17 @@ void BlobOne::RectView() {
 	if (m_ViewRect) {
 		SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &rect);
 	}
+}
+
+bool BlobOne::LifeStatus() {
+	if (m_lifePoints == 0)return false;
+	return true;
+	 
+}
+
+void BlobOne::LifeStatus4() {
+	m_lifePoints = 1;
+
 }
 
 

@@ -31,11 +31,11 @@
     <Filter Include="Pliki źródłowe\DaneWejściowe">
       <UniqueIdentifier>{168cb09a-f0fe-4ac1-8dc1-3ab190f5cd52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\DodatkoweObiekty">
+      <UniqueIdentifier>{b31b7a38-f662-485f-aec5-48ad9e7f79e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
@@ -56,6 +56,12 @@
     </ClCompile>
     <ClCompile Include="Collision.cpp">
       <Filter>Pliki źródłowe\Fizyka</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Pliki źródłowe\DodatkoweObiekty</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Pliki źródłowe\Fizyka</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Pliki źródłowe\DodatkoweObiekty</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

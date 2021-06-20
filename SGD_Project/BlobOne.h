@@ -17,10 +17,13 @@ public:
 	virtual void Boom(BlobOne b);
 	virtual void StartPosition();
 	virtual void RectView();
+	virtual bool LifeStatus();
+	virtual void LifeStatus4();
 
 	SDL_Rect rect;
 
 private:
+	int m_lifePoints = 4;
 	bool m_ViewRect = false;
 	Animation* m_Animation;
 	RigidBody* m_RigidBody;
