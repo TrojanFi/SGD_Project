@@ -11,7 +11,7 @@ Door::Door(Properties* props) : Character(props) {
 
 void Door::Draw() {
 	m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
-	SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &rect);
+	//SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &rect);
 }
 
 void Door::Update(float dt) {
@@ -21,6 +21,6 @@ void Door::Update(float dt) {
 }
 
 void Door::Clean() {
-
+	
 }
 

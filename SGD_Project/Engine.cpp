@@ -11,11 +11,12 @@
 
 Engine* Engine::s_Instance = nullptr;
 BlobOne* Blob_One = nullptr;
-Bullet* bullet= nullptr;
+Bullet* bullet = nullptr;
 Bullet* bullet2 = nullptr;
 Bullet* bullet3 = nullptr;
 Collision* collision = nullptr;
 Door* doorOne = nullptr;
+int Map = 0;
 
 bool Engine::Init() {
 
@@ -40,25 +41,22 @@ bool Engine::Init() {
 	}
 
 	TextureManager::GetInstance()->Load("Bg", "Assets/Bg.png");
-	TextureManager::GetInstance()->Load("BlobOneIdle","Assets/BlobIdle.png");
+	TextureManager::GetInstance()->Load("BlobOneIdle", "Assets/BlobIdle.png");
 	TextureManager::GetInstance()->Load("BlobRun", "Assets/BlobRun.png");
 	TextureManager::GetInstance()->Load("Bullet", "Assets/Bullet2.png");
 	TextureManager::GetInstance()->Load("DoorOne", "Assets/DoorOne.png");
 
 
 	Blob_One = new BlobOne(new Properties("BlobOneIdle", 100, 100, 64, 64));
+	doorOne = new Door(new Properties("DoorOne", 896, 100, 64, 64));
+
 
 	bullet = new Bullet(new Properties("Bullet", 400, 400, 16, 16));
-	bullet->Alive();
-	bullet2 = new Bullet(new Properties("Bullet", 150, 400, 16, 16));
-	
-	doorOne = new Door(new Properties("DoorOne", 800, 100, 64, 64));
+	bullet2 = new Bullet(new Properties("Bullet", 400, 400, 16, 16));
 
-	
-	
-	
 
-	Transform tf(1,2);
+
+	Transform tf(1, 2);
 	tf.Log();
 
 	return m_IsRunning = true;
@@ -68,44 +66,67 @@ void Engine::Update() {
 	//SDL_Log("Its working in the loop...\n");
 	Blob_One->Update(0);
 	doorOne->Update(0);
-	bullet->Update(0);
-	bullet2->Update(0);
-	
-	if (collision->CheckCollision(Blob_One->rect, bullet->rect)) { 
-		Blob_One->StartPosition(); 
-		bullet->StartPosition();
-		bullet2->StartPosition();
+
+
+
+	if (Map == 1) {
+		bullet2->Update(0);
+		bullet->Update(0);
 	}
-	if (collision->CheckCollision(Blob_One->rect, bullet2->rect)) {
+
+
+	if (collision->CheckCollision(Blob_One->rect, doorOne->rect) && Map == 0) {
+		Blob_One->StartPosition();
+		Map = 1;
+		bullet = new Bullet(new Properties("Bullet", 400, 400, 16, 16));
+		bullet->Alive();
+		bullet2 = new Bullet(new Properties("Bullet", 150, 400, 16, 16));
+	}
+
+	if (collision->CheckCollision(Blob_One->rect, doorOne->rect) && Map == 1) {
+		Blob_One->StartPosition();
+		Map = 0;
+		delete bullet;
+		delete bullet2;
+
+	}
+
+	else if (collision->CheckCollision(Blob_One->rect, bullet->rect) && Map == 1) {
 		Blob_One->StartPosition();
 		bullet->StartPosition();
 		bullet2->StartPosition();
 	}
-	if (collision->CheckCollision(Blob_One->rect, doorOne->rect)) {
+	else if (collision->CheckCollision(Blob_One->rect, bullet2->rect) && Map == 1) {
 		Blob_One->StartPosition();
+		bullet->StartPosition();
+		bullet2->StartPosition();
 	}
-	if (!Blob_One->LifeStatus()) { 
+
+	if (!Blob_One->LifeStatus()) {
 		// reset
 		Blob_One->LifeStatus4();
 	}
 
 
-	
+
 }
 
 void Engine::Render() {
-//	SDL_SetRenderDrawColor(m_Renderer, 204, 255, 153, 255);
-//	SDL_RenderClear(m_Renderer);
+	//	SDL_SetRenderDrawColor(m_Renderer, 204, 255, 153, 255);
+	//	SDL_RenderClear(m_Renderer);
 
 	TextureManager::GetInstance()->Draw("Bg", 0, 0, 960, 640);
 	Blob_One->Draw();
 	doorOne->Draw();
-	bullet->Draw();
-	bullet2->Draw();
-
 	Blob_One->RectView();
-	bullet->RectView();
-	bullet2->RectView();
+
+	if (Map == 1) {
+		bullet->Draw();
+		bullet->RectView();
+
+		bullet2->Draw();
+		bullet2->RectView();
+	}
 	SDL_RenderPresent(m_Renderer);
 
 }
