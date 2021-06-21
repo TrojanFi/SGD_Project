@@ -65,6 +65,10 @@ bool Engine::Init() {
 void Engine::Update() {
 	Blob_One->Update(0);
 	doorOne->Update(0);
+	
+	Blob_One->FireUpdate();
+	Blob_One->FireDeleteDistance();
+
 
 	MapsUpdate();
 	MapsChange();
@@ -87,6 +91,10 @@ void Engine::Render() {
 	Blob_One->Draw();
 	doorOne->Draw();
 	Blob_One->RectView();
+
+	
+	Blob_One->FireDraw();
+	
 
 	if (Map == 1) {
 		bullet->Draw();
@@ -139,6 +147,7 @@ void Engine::Collisions() {
 		bullet2->StartPosition();
 	}
 
+	
 }
 
 

@@ -8,6 +8,7 @@
 
 #include "Engine.h"
 
+Bullet* fire = nullptr;
 
 BlobOne::BlobOne(Properties* props):Character(props){
 	m_RigidBody = new RigidBody();
@@ -103,7 +104,9 @@ void BlobOne::Update(float dt) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(200));
 	}
 
-	
+	if (InputHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE)) {
+		CreateFire();
+	}
 
 
 	//m_Transform->X += m_RigidBody->Position().X;
@@ -113,16 +116,50 @@ void BlobOne::Update(float dt) {
 	m_Animation->Update();
 
 }
-void BlobOne::Boom(BlobOne bullet) {
+
+void BlobOne::CreateFire() {
+	if (!fired) {
+		fire = new Bullet(new Properties("Bullet", rect.x + 50, rect.y + 20, 16, 16));
+		fired = true;
+	}
+}
+
+void BlobOne::FireUpdate() {
+	if (fired)fire->UpdateBot(0);
+}
+
+void BlobOne::FireDraw() {
+	if(fired)fire->Draw();
+}
+
+void BlobOne::FireDelete() {
+	delete fire;
+	fired = false;
+}
+
+void BlobOne::FireDeleteDistance() {
+	if (fired) {
+		if (fire->BulletPositionX() > fire->BulletStartPositionX() + 300) {
+			delete fire;
+			fired = false;
+		}
+	}
+}
+
+
+bool BlobOne::Fired() {
+	return fire;
+}
+
+bool BlobOne::FiredCollision(SDL_Rect enemies) {
 	
-	if (rect.x + rect.w < bullet.rect.x || rect.x > bullet.rect.x + bullet.rect.x || 
-		rect.y + rect.h < bullet.rect.y || rect.y > bullet.rect.y + bullet.rect.h) {
-		SDL_Log("No collision");
+	if (fire->rect.x + fire->rect.w < enemies.x || fire->rect.x > enemies.x + enemies.w ||
+		fire->rect.y + fire->rect.h < enemies.y || fire->rect.y > enemies.y + enemies.h) {
+		return false;
 	}
 	else {
-		SDL_Log("Collision");
+		return true;
 	}
-
 }
 
 void BlobOne::Clean() {

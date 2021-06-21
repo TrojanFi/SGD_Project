@@ -16,6 +16,8 @@ public:
 	virtual void UpdateBot(int type);
 	virtual void StartPosition();
 	virtual void RectView();
+	virtual float BulletStartPositionX();
+	virtual float BulletPositionX();
 	SDL_Rect rect;
 
 private:
