@@ -52,12 +52,12 @@ float Bullet::BulletPositionX() {
 	return m_Transform->X;
 }
 
-void Bullet::UpdateBot(int type) {
-	m_RigidBody->Update(0.8);
+void Bullet::UpdateFire(float direction) {
 	// Shot
-	if (type == 0) {
+	m_RigidBody->Update(0.8);
+	if (direction >= 0) {
 		if (m_Transform->X < x + 300) {
-			m_RigidBody->ApplyForceX(4 * FORWARD);
+			m_RigidBody->ApplyForceX(10 * FORWARD);
 			rect.x = m_Transform->X;
 			rect.y = m_Transform->Y;
 			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
@@ -66,8 +66,27 @@ void Bullet::UpdateBot(int type) {
 			m_RigidBody->UnSetForce();
 		}
 	}
+	if (direction < 0) {
+		if (m_Transform->X < x + 300) {
+			m_RigidBody->ApplyForceX(10 * BACKWARD);
+			rect.x = m_Transform->X;
+			rect.y = m_Transform->Y;
+			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
+		}
+		else {
+			m_RigidBody->UnSetForce();
+		}
+	}
+	m_Transform->TranslateX(m_RigidBody->Position().X);
+	m_Transform->TranslateY(m_RigidBody->Position().Y);
+
+	m_Animation->Update();
+}
+
+void Bullet::UpdateBot(int type) {
+	m_RigidBody->Update(0.8);
 	// Horizontal move 
-	if (type == 1) {
+	if (type == 2) {
 		if (m_Transform->X < x+1) {
 			m_RigidBody->ApplyForceX(4 * FORWARD);
 			rect.x = m_Transform->X;
@@ -87,7 +106,7 @@ void Bullet::UpdateBot(int type) {
 		}
 	}
 	// Vertical move
-	else if (type == 2) {
+	else if (type == 3) {
 		if (m_Transform->Y < y + 1) {
 			m_RigidBody->ApplyForceY(4 * FORWARD);
 			rect.y = m_Transform->Y;
@@ -107,7 +126,7 @@ void Bullet::UpdateBot(int type) {
 		}
 	}
 	// Rectangle move
-	else if (type == 3) {
+	else if (type == 4) {
 		if (m_Transform->X < x + 1 &&  m_Transform->Y > y - 1) {
 			m_RigidBody->UnSetForce();
 			m_RigidBody->ApplyForceX(4 * FORWARD);

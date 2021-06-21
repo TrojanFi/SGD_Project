@@ -26,6 +26,7 @@ public:
 	inline void UnSetForce() { m_Force = Vector2D(0, 0); }
 
 	inline void ApplyFriction(Vector2D friction) { m_Friction = friction; }
+	inline float GetForceX() { return m_Force.X; }
 	inline void UnSetFriction() { m_Friction = Vector2D(0, 0); }
 
 	inline float GetMass() { return m_Mass; }

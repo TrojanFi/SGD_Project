@@ -121,11 +121,12 @@ void BlobOne::CreateFire() {
 	if (!fired) {
 		fire = new Bullet(new Properties("Bullet", rect.x + 50, rect.y + 20, 16, 16));
 		fired = true;
+		fireDirection = m_RigidBody->GetForceX();
 	}
 }
 
 void BlobOne::FireUpdate() {
-	if (fired)fire->UpdateBot(0);
+	if (fired)fire->UpdateFire(fireDirection);
 }
 
 void BlobOne::FireDraw() {
@@ -143,6 +144,10 @@ void BlobOne::FireDeleteDistance() {
 			delete fire;
 			fired = false;
 		}
+		else if (fire->BulletPositionX() < fire->BulletStartPositionX() - 300) {
+			delete fire;
+			fired = false;
+		}
 	}
 }
 
@@ -152,13 +157,14 @@ bool BlobOne::Fired() {
 }
 
 bool BlobOne::FiredCollision(SDL_Rect enemies) {
-	
-	if (fire->rect.x + fire->rect.w < enemies.x || fire->rect.x > enemies.x + enemies.w ||
-		fire->rect.y + fire->rect.h < enemies.y || fire->rect.y > enemies.y + enemies.h) {
-		return false;
-	}
-	else {
-		return true;
+	if (fired) {
+		if (fire->rect.x + fire->rect.w < enemies.x || fire->rect.x > enemies.x + enemies.w ||
+			fire->rect.y + fire->rect.h < enemies.y || fire->rect.y > enemies.y + enemies.h) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }
 

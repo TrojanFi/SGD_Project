@@ -14,6 +14,7 @@ public:
 	virtual void Clean();
 	virtual void Update(float dt);
 	virtual void UpdateBot(int type);
+	virtual void UpdateFire(float direction);
 	virtual void StartPosition();
 	virtual void RectView();
 	virtual float BulletStartPositionX();

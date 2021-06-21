@@ -29,6 +29,7 @@ public:
 	SDL_Rect rect;
 
 private:
+	float fireDirection = 0;
 	bool fired = false;
 	int m_lifePoints = 4;
 	bool m_ViewRect = false;

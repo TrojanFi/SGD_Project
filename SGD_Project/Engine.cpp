@@ -110,7 +110,7 @@ void Engine::Render() {
 void Engine::MapsUpdate() {
 
 	if (Map == 1) {
-		bullet2->UpdateBot(3);
+		bullet2->UpdateBot(4);
 		bullet->Update(0);
 	}
 
