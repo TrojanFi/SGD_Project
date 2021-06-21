@@ -63,6 +63,9 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Pliki źródłowe\Postacie</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="Door.h">
       <Filter>Pliki źródłowe\DodatkoweObiekty</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Pliki źródłowe\Postacie</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

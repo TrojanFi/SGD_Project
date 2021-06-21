@@ -119,9 +119,14 @@ void BlobOne::Update(float dt) {
 
 void BlobOne::CreateFire() {
 	if (!fired) {
-		fire = new Bullet(new Properties("Bullet", rect.x + 50, rect.y + 20, 16, 16));
 		fired = true;
 		fireDirection = m_RigidBody->GetForceX();
+		if (fireDirection >= 0) {
+			fire = new Bullet(new Properties("Bullet", rect.x + 50, rect.y + 20, 16, 16));
+		}
+		else {
+			fire = new Bullet(new Properties("Bullet", rect.x + 10, rect.y + 20, 16, 16));
+		}
 	}
 }
 
