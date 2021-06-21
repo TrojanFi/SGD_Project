@@ -19,6 +19,7 @@ Bullet::Bullet(Properties* props) :Character(props) {
 	rect.h = 16; //64 //16
 	x = m_Transform->X;
 	y = m_Transform->Y;
+
 }
 
 void Bullet::Draw() {
@@ -32,11 +33,8 @@ void Bullet::StartPosition() {
 	rect.h = 16; //64 //16
 	m_Transform->X = x;
 	m_Transform->Y = y;
+	m_RigidBody->UnSetForce();
 	
-}
-
-void Bullet::Alive() {
-	m_Alive = true;
 }
 
 
@@ -46,14 +44,86 @@ void Bullet::RectView() {
 	}
 }
 
+void Bullet::UpdateBot(int type) {
+	m_RigidBody->Update(0.8);
+	// Horizontal move 
+	if (type == 1) {
+		if (m_Transform->X < x+1) {
+			m_RigidBody->ApplyForceX(4 * FORWARD);
+			rect.x = m_Transform->X;
+			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
+		}
+		else if (m_Transform->X > x+350)
+		{
+			m_RigidBody->ApplyForceX(4 * BACKWARD);
+			rect.x = m_Transform->X;
+			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
+		}
+		else {
+			rect.x = m_Transform->X;
+		}
+	}
+	// Vertical move
+	else if (type == 2) {
+		if (m_Transform->Y < y + 1) {
+			m_RigidBody->ApplyForceY(4 * FORWARD);
+			rect.y = m_Transform->Y;
+			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
+		}
+		else if (m_Transform->Y > y + 150)
+		{
+			m_RigidBody->ApplyForceY(4 * BACKWARD);
+			rect.y = m_Transform->Y;
+			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
+		}
+		else {
+			rect.y = m_Transform->Y;
+		}
+	}
+	// Rectangle move
+	else if (type == 3) {
+		if (m_Transform->X < x + 1 &&  m_Transform->Y > y - 1) {
+			m_RigidBody->UnSetForce();
+			m_RigidBody->ApplyForceX(4 * FORWARD);
+			rect.x = m_Transform->X;
+			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
+		}
+		else if (m_Transform->X > x + 350 && m_Transform->Y > y - 150)
+		{
+			m_RigidBody->UnSetForce();
+			m_RigidBody->ApplyForceY(4 * BACKWARD);
+			rect.y = m_Transform->Y;
+			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
+		}
+		else if (m_Transform->Y < y - 150 && m_Transform->X > x + 1) {
+			m_RigidBody->UnSetForce();
+			m_RigidBody->ApplyForceX(4 * BACKWARD);
+			rect.x = m_Transform->X;
+			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
+		}
+		else if (m_Transform->X < x + 1 )
+		{
+			m_RigidBody->UnSetForce();
+			m_RigidBody->ApplyForceY(4 * FORWARD);
+			rect.y = m_Transform->Y;
+			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
+		}
+		else {
+			rect.x = m_Transform->X;
+			rect.y = m_Transform->Y;
+		}
+	}
+
+	m_Transform->TranslateX(m_RigidBody->Position().X);
+	m_Transform->TranslateY(m_RigidBody->Position().Y);
+
+	m_Animation->Update();
+}
+
 void Bullet::Update(float dt) {
 	//m_Frame = (SDL_GetTicks() / m_AnimationSpeed) % m_FrameCount;
 
 	m_RigidBody->Update(0.8);
-
-	
-
-	if (m_Alive) {
 
 		m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
 		m_RigidBody->UnSetForce();
@@ -85,23 +155,6 @@ void Bullet::Update(float dt) {
 			rect.x = m_Transform->X;
 			rect.y = m_Transform->Y;
 		}
-	}
-	else {
-		if (m_Transform->X < 151) {
-			m_RigidBody->ApplyForceX(4 * FORWARD);
-			rect.x = m_Transform->X;
-			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
-		}
-		else if(m_Transform->X > 500 )
-		{
-			m_RigidBody->ApplyForceX(4 * BACKWARD);
-			rect.x = m_Transform->X;
-			m_Animation->SetProps("Bullet", 0, 3, 100, SDL_FLIP_NONE);
-		}
-		else {
-			rect.x = m_Transform->X;
-		}
-	}
 
 
 	if (InputHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_X) && m_ViewRect == false) {

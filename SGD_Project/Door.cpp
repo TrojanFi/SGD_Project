@@ -1,5 +1,6 @@
 #include "Door.h"
 #include "Engine.h"
+#include "TextureManager.h"
 
 Door::Door(Properties* props) : Character(props) {
 	m_Animation = new Animation();
@@ -21,6 +22,6 @@ void Door::Update(float dt) {
 }
 
 void Door::Clean() {
-	
+	TextureManager::GetInstance()->Clean();
 }
 

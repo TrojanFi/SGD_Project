@@ -22,6 +22,9 @@ class Engine {
 		void Update();
 		void Render();
 		void Events();
+		void MapsChange();
+		void Collisions();
+		void MapsUpdate();
 
 		inline bool IsRunning() {return m_IsRunning;}
 		inline SDL_Renderer* GetRenderer() { return m_Renderer; }

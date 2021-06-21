@@ -63,45 +63,12 @@ bool Engine::Init() {
 }
 
 void Engine::Update() {
-	//SDL_Log("Its working in the loop...\n");
 	Blob_One->Update(0);
 	doorOne->Update(0);
 
-
-
-	if (Map == 1) {
-		bullet2->Update(0);
-		bullet->Update(0);
-	}
-
-
-	if (collision->CheckCollision(Blob_One->rect, doorOne->rect) && Map == 0) {
-		Blob_One->StartPosition();
-		Map = 1;
-		bullet = new Bullet(new Properties("Bullet", 400, 400, 16, 16));
-		bullet->Alive();
-		bullet2 = new Bullet(new Properties("Bullet", 150, 400, 16, 16));
-	}
-
-	if (collision->CheckCollision(Blob_One->rect, doorOne->rect) && Map == 1) {
-		Blob_One->StartPosition();
-		Map = 0;
-		delete bullet;
-		delete bullet2;
-
-	}
-
-	else if (collision->CheckCollision(Blob_One->rect, bullet->rect) && Map == 1) {
-		Blob_One->StartPosition();
-		bullet->StartPosition();
-		bullet2->StartPosition();
-	}
-	else if (collision->CheckCollision(Blob_One->rect, bullet2->rect) && Map == 1) {
-		Blob_One->StartPosition();
-		bullet->StartPosition();
-		bullet2->StartPosition();
-	}
-
+	MapsUpdate();
+	MapsChange();
+	Collisions();
 	if (!Blob_One->LifeStatus()) {
 		// reset
 		Blob_One->LifeStatus4();
@@ -110,6 +77,7 @@ void Engine::Update() {
 
 
 }
+
 
 void Engine::Render() {
 	//	SDL_SetRenderDrawColor(m_Renderer, 204, 255, 153, 255);
@@ -128,6 +96,48 @@ void Engine::Render() {
 		bullet2->RectView();
 	}
 	SDL_RenderPresent(m_Renderer);
+
+}
+
+void Engine::MapsUpdate() {
+
+	if (Map == 1) {
+		bullet2->UpdateBot(3);
+		bullet->Update(0);
+	}
+
+}
+
+void Engine::MapsChange() {
+	if (collision->CheckCollision(Blob_One->rect, doorOne->rect) && Map == 0) {
+		Blob_One->StartPosition();
+		Map = 1;
+		bullet = new Bullet(new Properties("Bullet", 400, 400, 16, 16));
+		bullet2 = new Bullet(new Properties("Bullet", 150, 400, 16, 16));
+	}
+
+	if (collision->CheckCollision(Blob_One->rect, doorOne->rect) && Map == 1) {
+		Blob_One->StartPosition();
+		Map = 0;
+		delete bullet;
+		delete bullet2;
+
+	}
+}
+
+
+void Engine::Collisions() {
+
+	if (collision->CheckCollision(Blob_One->rect, bullet->rect)) {
+		Blob_One->StartPosition();
+		bullet->StartPosition();
+		bullet2->StartPosition();
+	}
+	if (collision->CheckCollision(Blob_One->rect, bullet2->rect)) {
+		Blob_One->StartPosition();
+		bullet->StartPosition();
+		bullet2->StartPosition();
+	}
 
 }
 
