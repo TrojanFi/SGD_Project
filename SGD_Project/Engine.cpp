@@ -6,6 +6,7 @@
 #include "BlobOne.h"
 #include "InputHandler.h"
 #include "Bullet.h"
+#include "Enemy.h"
 #include "Collision.h"
 #include "Door.h"
 
@@ -14,6 +15,7 @@ BlobOne* Blob_One = nullptr;
 Bullet* bullet = nullptr;
 Bullet* bullet2 = nullptr;
 Bullet* bullet3 = nullptr;
+Enemy* enemy1 = nullptr;
 Collision* collision = nullptr;
 Door* doorOne = nullptr;
 int Map = 0;
@@ -45,6 +47,7 @@ bool Engine::Init() {
 	TextureManager::GetInstance()->Load("BlobRun", "Assets/BlobRun.png");
 	TextureManager::GetInstance()->Load("Bullet", "Assets/Bullet2.png");
 	TextureManager::GetInstance()->Load("DoorOne", "Assets/DoorOne.png");
+	TextureManager::GetInstance()->Load("Enemy", "Assets/Enemy.png");
 
 
 	Blob_One = new BlobOne(new Properties("BlobOneIdle", 100, 100, 64, 64));
@@ -53,6 +56,8 @@ bool Engine::Init() {
 
 	bullet = new Bullet(new Properties("Bullet", 400, 400, 16, 16));
 	bullet2 = new Bullet(new Properties("Bullet", 100, 400, 16, 16));
+
+	enemy1 = new Enemy(new Properties("Enemy", 250, 400, 32, 64));
 
 
 
@@ -100,6 +105,9 @@ void Engine::Render() {
 
 		bullet2->Draw();
 		bullet2->RectView();
+
+		enemy1->Draw();
+		enemy1->FireDraw();
 	}
 	SDL_RenderPresent(m_Renderer);
 
@@ -110,6 +118,10 @@ void Engine::MapsUpdate() {
 	if (Map == 1) {
 		bullet2->UpdateBot(4);
 		bullet->Update(0);
+		enemy1->UpdateMovement();
+		enemy1->SeePlayer(Blob_One->rect);
+		enemy1->FireUpdate();
+		enemy1->FireDeleteDistance();
 	}
 
 }
@@ -120,6 +132,7 @@ void Engine::MapsChange() {
 		Map = 1;
 		bullet = new Bullet(new Properties("Bullet", 400, 400, 16, 16));
 		bullet2 = new Bullet(new Properties("Bullet", 150, 400, 16, 16));
+		enemy1 = new Enemy(new Properties("Enemy", 250, 250, 32, 64));
 	}
 
 	if (collision->CheckCollision(Blob_One->rect, doorOne->rect) && Map == 1) {
@@ -127,21 +140,32 @@ void Engine::MapsChange() {
 		Map = 0;
 		delete bullet;
 		delete bullet2;
+		delete enemy1;;
 	}
 }
 
 
 void Engine::Collisions() {
-
-	if (collision->CheckCollision(Blob_One->rect, bullet->rect)) {
-		Blob_One->StartPosition();
-		bullet->StartPosition();
-		bullet2->StartPosition();
-	}
-	if (collision->CheckCollision(Blob_One->rect, bullet2->rect)) {
-		Blob_One->StartPosition();
-		bullet->StartPosition();
-		bullet2->StartPosition();
+	// problem z bullet - if nie jest rozwi¹zaniem (tymczasowe)
+	if (Map != 0) {
+		if (collision->CheckCollision(Blob_One->rect, bullet->rect)) {
+			Blob_One->StartPosition();
+			bullet->StartPosition();
+			bullet2->StartPosition();
+			enemy1->StartPosition();
+		}
+		if (collision->CheckCollision(Blob_One->rect, bullet2->rect)) {
+			Blob_One->StartPosition();
+			bullet->StartPosition();
+			bullet2->StartPosition();
+			enemy1->StartPosition();
+		}
+		if (collision->CheckCollision(Blob_One->rect, enemy1->rect)) {
+			Blob_One->StartPosition();
+			bullet->StartPosition();
+			bullet2->StartPosition();
+			enemy1->StartPosition();
+		}
 	}
 
 	

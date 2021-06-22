@@ -17,7 +17,7 @@ BlobOne::BlobOne(Properties* props):Character(props){
 	m_Animation->SetProps(m_TextureID, 0, 3, 100, SDL_FLIP_NONE);
 	rect.x = 120;
 	rect.y = 100;
-	rect.w = 34;
+	rect.w = 27;
 	rect.h = 64; // 36
 }
 
@@ -25,7 +25,7 @@ void BlobOne::StartPosition() {
 	m_lifePoints += -1;
 	rect.x = 120;
 	rect.y = 100;
-	rect.w = 34;
+	rect.w = 27;
 	rect.h = 64; // 36
 	m_Transform->X = 100;
 	m_Transform->Y = 100;
@@ -123,10 +123,10 @@ void BlobOne::CreateFire() {
 		fired = true;
 		fireDirection = m_RigidBody->GetForceX();
 		if (fireDirection >= 0) {
-			fire = new Bullet(new Properties("Bullet", rect.x + 50, rect.y + 20, 16, 16));
+			fire = new Bullet(new Properties("Bullet", rect.x + 20, rect.y + 20, 16, 16));
 		}
 		else {
-			fire = new Bullet(new Properties("Bullet", rect.x + 10, rect.y + 20, 16, 16));
+			fire = new Bullet(new Properties("Bullet", rect.x , rect.y + 20, 16, 16));
 		}
 	}
 }
@@ -158,9 +158,7 @@ void BlobOne::FireDeleteDistance() {
 }
 
 
-bool BlobOne::Fired() {
-	return fire;
-}
+
 
 bool BlobOne::FiredCollision(SDL_Rect enemies) {
 	if (fired) {
