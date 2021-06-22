@@ -1,16 +1,4 @@
-﻿  BlobOne.cpp
+﻿  Engine.cpp
 C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\GameObject.h(11,13): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
 C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\GameObject.h(12,13): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(62,25): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(69,23): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(75,23): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(83,23): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(91,23): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-  Enemy.cpp
-C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\GameObject.h(11,13): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\GameObject.h(12,13): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\Enemy.cpp(8,22): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\Enemy.cpp(9,22): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-  Generowanie kodu...
-C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\SGD_Project\BlobOne.cpp(174): warning C4715: "BlobOne::FiredCollision”: niewszystkie ścieżki kodu zwracają wartość
   SGD_Project.vcxproj -> C:\Moje pierdoły\Materiały_PJWSTK_semestr_6\SGD_TAD\Project\SGD_Project\x64\Debug\SGD_Project.exe

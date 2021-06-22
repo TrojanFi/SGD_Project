@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "TextureManager.h"
 
 Enemy::Enemy(Properties* props):Character(props) {
 	m_Animation = new Animation();
@@ -13,11 +14,26 @@ Enemy::Enemy(Properties* props):Character(props) {
 	y = m_Transform->Y;
 }
 
+void Enemy::StartPosition() {
+	rect.x = m_Transform->X; 
+	rect.y = m_Transform->Y; 
+	rect.w = 16; 
+	rect.h = 16; 
+	m_Transform->X = x;
+	m_Transform->Y = y;
+	m_RigidBody->UnSetForce();
+
+}
+
 void Enemy::Draw() {
+	m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
+}
+
+
+
+void Enemy::UpdateMovement() {
 }
 
 void Enemy::Clean() {
-}
-
-void Enemy::UpdateMovement() {
+	TextureManager::GetInstance()->Clean();
 }

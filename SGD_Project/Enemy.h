@@ -12,6 +12,7 @@ public:
 	virtual void Draw();
 	virtual void Clean();
 	virtual void UpdateMovement();
+	virtual void StartPosition();
 	SDL_Rect rect;
 
 private:

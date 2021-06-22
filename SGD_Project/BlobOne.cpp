@@ -15,17 +15,17 @@ BlobOne::BlobOne(Properties* props):Character(props){
 	m_Animation = new Animation();
 
 	m_Animation->SetProps(m_TextureID, 0, 3, 100, SDL_FLIP_NONE);
-	rect.x = 100;
+	rect.x = 120;
 	rect.y = 100;
-	rect.w = 64;
+	rect.w = 34;
 	rect.h = 64; // 36
 }
 
 void BlobOne::StartPosition() {
 	m_lifePoints += -1;
-	rect.x = 100;
+	rect.x = 120;
 	rect.y = 100;
-	rect.w = 64;
+	rect.w = 34;
 	rect.h = 64; // 36
 	m_Transform->X = 100;
 	m_Transform->Y = 100;
@@ -63,16 +63,17 @@ void BlobOne::Update(float dt) {
 
 	m_Animation->SetProps("BlobOneIdle", 0, 3, 100, SDL_FLIP_NONE);
 	m_RigidBody->UnSetForce();
+	rect.x = m_Transform->X + 20;
 
 	if (InputHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_D) && m_Transform->X < 900) {
 		m_RigidBody->ApplyForceX(4*FORWARD);
-		rect.x = m_Transform->X;
+		rect.x = m_Transform->X + 20;
 		m_Animation->SetProps("BlobRun", 0, 6, 100, SDL_FLIP_NONE);
 	}
 
 	if (InputHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_A) && m_Transform->X > 0) {
 		m_RigidBody->ApplyForceX(4*BACKWARD);
-		rect.x = m_Transform->X;
+		rect.x = m_Transform->X + 20;
 		m_Animation->SetProps("BlobRun", 0, 6, 100, SDL_FLIP_HORIZONTAL);
 	}
 

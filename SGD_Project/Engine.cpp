@@ -52,7 +52,7 @@ bool Engine::Init() {
 
 
 	bullet = new Bullet(new Properties("Bullet", 400, 400, 16, 16));
-	bullet2 = new Bullet(new Properties("Bullet", 400, 400, 16, 16));
+	bullet2 = new Bullet(new Properties("Bullet", 100, 400, 16, 16));
 
 
 
@@ -91,8 +91,6 @@ void Engine::Render() {
 	Blob_One->Draw();
 	doorOne->Draw();
 	Blob_One->RectView();
-
-	
 	Blob_One->FireDraw();
 	
 
@@ -129,7 +127,6 @@ void Engine::MapsChange() {
 		Map = 0;
 		delete bullet;
 		delete bullet2;
-
 	}
 }
 
