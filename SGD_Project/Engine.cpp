@@ -19,6 +19,7 @@ Enemy* enemy1 = nullptr;
 Collision* collision = nullptr;
 Door* doorOne = nullptr;
 int Map = 0;
+bool enemyAlive_1 = true;
 
 bool Engine::Init() {
 
@@ -105,9 +106,11 @@ void Engine::Render() {
 
 		bullet2->Draw();
 		bullet2->RectView();
-
-		enemy1->Draw();
-		enemy1->FireDraw();
+		
+		if(enemyAlive_1){
+			enemy1->Draw();
+			enemy1->FireDraw();
+		}
 	}
 	SDL_RenderPresent(m_Renderer);
 
@@ -118,10 +121,13 @@ void Engine::MapsUpdate() {
 	if (Map == 1) {
 		bullet2->UpdateBot(4);
 		bullet->Update(0);
-		enemy1->UpdateMovement();
-		enemy1->SeePlayer(Blob_One->rect);
-		enemy1->FireUpdate();
-		enemy1->FireDeleteDistance();
+
+		if (enemyAlive_1) {
+			enemy1->UpdateMovement();
+			enemy1->SeePlayer(Blob_One->rect);
+			enemy1->FireUpdate();
+			enemy1->FireDeleteDistance();
+		}
 	}
 
 }
@@ -133,6 +139,7 @@ void Engine::MapsChange() {
 		bullet = new Bullet(new Properties("Bullet", 400, 400, 16, 16));
 		bullet2 = new Bullet(new Properties("Bullet", 150, 400, 16, 16));
 		enemy1 = new Enemy(new Properties("Enemy", 250, 250, 32, 64));
+		enemyAlive_1 = true;
 	}
 
 	if (collision->CheckCollision(Blob_One->rect, doorOne->rect) && Map == 1) {
@@ -140,7 +147,7 @@ void Engine::MapsChange() {
 		Map = 0;
 		delete bullet;
 		delete bullet2;
-		delete enemy1;;
+		if(enemyAlive_1)delete enemy1;
 	}
 }
 
@@ -152,19 +159,43 @@ void Engine::Collisions() {
 			Blob_One->StartPosition();
 			bullet->StartPosition();
 			bullet2->StartPosition();
-			enemy1->StartPosition();
+			if(enemyAlive_1)enemy1->StartPosition();
+			else {
+				enemy1 = new Enemy(new Properties("Enemy", 250, 250, 32, 64));
+			}
 		}
 		if (collision->CheckCollision(Blob_One->rect, bullet2->rect)) {
 			Blob_One->StartPosition();
 			bullet->StartPosition();
 			bullet2->StartPosition();
-			enemy1->StartPosition();
+			if(enemyAlive_1)enemy1->StartPosition();
+			else {
+				enemy1 = new Enemy(new Properties("Enemy", 250, 250, 32, 64));
+			}
 		}
 		if (collision->CheckCollision(Blob_One->rect, enemy1->rect)) {
 			Blob_One->StartPosition();
 			bullet->StartPosition();
 			bullet2->StartPosition();
-			enemy1->StartPosition();
+			if(enemyAlive_1)enemy1->StartPosition();
+			else {
+				enemy1 = new Enemy(new Properties("Enemy", 250, 250, 32, 64));
+			}
+		}
+		if (enemyAlive_1) {
+			if (enemy1->FiredCollision(Blob_One->rect)) {
+				Blob_One->StartPosition();
+				bullet->StartPosition();
+				bullet2->StartPosition();
+				if (enemyAlive_1)enemy1->StartPosition();
+				else {
+					enemy1 = new Enemy(new Properties("Enemy", 250, 250, 32, 64));
+				}
+			}
+		}
+		if (Blob_One->FiredCollision(enemy1->rect) && enemyAlive_1 == true) {
+			delete enemy1;
+			enemyAlive_1 = false;
 		}
 	}
 
