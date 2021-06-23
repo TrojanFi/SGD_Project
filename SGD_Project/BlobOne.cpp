@@ -50,7 +50,7 @@ bool BlobOne::LifeStatus() {
 }
 
 void BlobOne::LifeStatus4() {
-	m_lifePoints = 1;
+	m_lifePoints -= 1;
 
 }
 
