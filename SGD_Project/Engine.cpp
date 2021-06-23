@@ -125,10 +125,30 @@ void Engine::Render() {
 	Blob_One->Draw();
 	Blob_One->RectView();
 	Blob_One->FireDraw();
-	heart1->Draw();
-	heart2->Draw();
-	heart3->Draw();
-	heart4->Draw();
+
+	switch (Blob_One->LifeHearts()) {
+	case 0:
+		break;
+	case 1:
+		heart1->Draw();
+		break;
+	case 2:
+		heart1->Draw();
+		heart2->Draw();
+		break;
+	case 3:
+		heart1->Draw();
+		heart2->Draw();
+		heart3->Draw();
+		break;
+	case 4:
+		heart1->Draw();
+		heart2->Draw();
+		heart3->Draw();
+		heart4->Draw();
+		break;
+	}
+	
 
 	
 	if (Map == 0) {
@@ -358,6 +378,7 @@ void Engine::MapsChange() {
 		delete bullet;
 		delete bullet2;
 		if (enemyAlive_1)delete enemy1;
+		Blob_One->LifeStatus4();
 
 	}
 	// load level 2
@@ -388,6 +409,7 @@ void Engine::MapsChange() {
 		delete bullet3;
 		if (enemyAlive_1)delete enemy1;
 		if (enemyAlive_2)delete enemy2;
+		Blob_One->LifeStatus4();
 
 	}
 	// load level 3
@@ -421,7 +443,7 @@ void Engine::MapsChange() {
 		if (enemyAlive_1)delete enemy1;
 		if (enemyAlive_2)delete enemy2;
 		if (enemyAlive_3)delete enemy3;
-
+		Blob_One->LifeStatus4();
 	}
 	// load level 4
 	if (collision->CheckCollision(Blob_One->rect, doorFour->rect) && Map == 0) {
@@ -454,6 +476,7 @@ void Engine::MapsChange() {
 		if (enemyAlive_1)delete enemy1;
 		if (enemyAlive_2)delete enemy2;
 		if (enemyAlive_3)delete enemy3;
+		Blob_One->LifeStatus4();
 
 	}
 

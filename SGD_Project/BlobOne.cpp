@@ -54,6 +54,10 @@ void BlobOne::LifeStatus4() {
 
 }
 
+int BlobOne::LifeHearts() {
+	return m_lifePoints;
+}
+
 
 
 void BlobOne::Update(float dt) {

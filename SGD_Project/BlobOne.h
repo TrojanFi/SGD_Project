@@ -24,6 +24,7 @@ public:
 	virtual void FireUpdate();
 	virtual void FireDraw();
 	virtual bool FiredCollision(SDL_Rect enemies);
+	virtual int LifeHearts();
 	
 
 	SDL_Rect rect;
